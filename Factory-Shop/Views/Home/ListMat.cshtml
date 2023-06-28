@@ -1,0 +1,18 @@
+﻿ @{
+    ViewData["Title"] = "Materials";
+}
+
+<div>
+@{
+    foreach(var mat in Model.AllMaT){
+        <div>
+        <h3> Матеріал: @mat.Name @mat.Group </h3>
+        <p> 
+            @mat.ShortDesc
+            Ціна: @mat.Price.ToString("C2")
+        </p>
+        </div>
+    }
+}
+
+</div>
