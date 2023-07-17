@@ -6,7 +6,7 @@ namespace Factory_Shop.Data.Interfaces
     {
         IEnumerable<Materials> AllMaterials { get; }
 
-        Materials GetMaterials(int CarId);
+        Materials GetMaterials(int MatId);
 
     }
 }

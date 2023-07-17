@@ -10,7 +10,7 @@
         public string? Img { get; set; }
         public ushort Price { get; set; }
         public bool Available { get; set; } 
-        public int CategoriID { get; set; }
+        public int MaterialID { get; set; }
         public virtual Category Category { get; set; }
 
     }
