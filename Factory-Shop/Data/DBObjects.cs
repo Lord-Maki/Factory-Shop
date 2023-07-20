@@ -11,7 +11,7 @@ namespace Factory_Shop.Data
             if (!contend.Category.Any())
             {
                 contend.Category.AddRange(Categories.Select(c => c.Value));
-  //              contend.SaveChanges();
+                contend.SaveChanges();
             }
 
             if (!contend.Materials.Any())
