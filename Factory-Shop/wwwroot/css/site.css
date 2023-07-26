@@ -4,15 +4,6 @@
     margin: 0;
     padding: 0;
 }
-.row {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: calc(-1 * var(--bs-gutter-y));
-    margin-right: calc(-.5 * var(--bs-gutter-x));
-    margin-left: calc(-.5 * var(--bs-gutter-x));
-}
 
 video {
  
@@ -23,7 +14,7 @@ video {
     bottom: 0;
     left: 0;
     overflow: hidden;
-    z-index: -2;
+    z-index: 0;
     background: #94a233;
     background-size: cover;
 }
@@ -45,9 +36,11 @@ VideoFront {
     color: #f1f1f1;
     width: 100%;
     padding: 20px;
+
 }
 
 .Desc {
+    z-index: 2;
     width: 800px;
 }
 
@@ -78,4 +71,19 @@ VideoFront {
 
     position:center;
     margin-top: auto;
+}
+
+.container{
+    margin-top: 70px;
+}
+
+.foot {
+    margin-top: 70px;
+    z-index: -2;
+    position: center;
+}
+
+.Adress {
+    display: flex;
+    padding: 0,0,50px,0;
 }

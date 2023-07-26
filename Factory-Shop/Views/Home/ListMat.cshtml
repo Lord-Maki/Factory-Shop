@@ -1,28 +1,76 @@
-﻿ @{
-    ViewData["Title"] = "Materials Shop";
+﻿@{
+    ViewData["Title"] = "ListMat";
+
+    MatListViewModel paginator = new MatListViewModel();
+
+    int pageNo = 0;
+
+    if (ViewBag.MatListViewModel != null)
+    {
+        paginator = ViewBag.MatListViewModel;
+        pageNo = paginator.CurrentPage;
+
+    }
+
 }
 
 <div>
    <h1>Продаж матеріалів</h1>
-   <p></p>
-@{
-    foreach(var mat in Model.AllMaT){
-        <div class="prod">
-             <hr class="featurette-divider">
-             <div class="row featurette">
-                <div class="col-md-7 order-md-2">
-                        <h2 class="featurette-heading fw-normal lh-1">Матеріал: @mat.Name @mat.Group </h2>
-                    <p class="lead">@mat.LongDesc</p>
-                        <p class="lead">Ціна: @mat.Price.ToString()</p>
-                </div>
-                <div class="col-md-5 order-md-1">
-                    <img class="img-thumbnail" src="@mat.Img"/>
-                </div>
-            </div>
-                     
-        </div>
+   <p>За додатковою інформацією звертайтеся за нашими контаутми</p>
+    @{
+         foreach(var mat in Model.AllMaT){
+            <div class="prod">
+                 <hr class="featurette-divider">
+                    <div class="row featurette">
+                        <div class="col-md-7 order-md-2">
+                            <h2 class="featurette-heading fw-normal lh-1">Матеріал: @mat.Name @mat.Group </h2>
+                            <p class="lead">@mat.LongDesc</p>
+                            <p class="lead">Ціна: @mat.Price.ToString()</p>
+                        </div>
+                        <div class="col-md-5 order-md-1">
+                            <img class="img-thumbnail" src="@mat.Img"/>
+                        </div>
+                    </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="nav-link" asp-controller="Home" asp-action="Contact">Замовити</a>
+                </div>   
+            </div>    
+         }
     }
-};
+   <div class="container">
+        @if(paginator.TotalPages > 0)
+        {
+            <ul class ="pagination justify-content-end">
 
+                @if(paginator.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="ListMat" asp-route-pg="1">Перша</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="ListMat" asp-route-pg="@(paginator.CurrentPage - 1)">Попередня</a>
+                    </li>
+                }
+
+                @for(var pge = paginator.StartPage; pge <= paginator.EndPage; pge++)
+                {
+                    <li class ="page-item @(pge == paginator.CurrentPage ? "active" : "")">
+                        <a class="page-link" asp-controller="Home" asp-action="ListMat" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+
+                @if(paginator.CurrentPage < paginator.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="ListMat" asp-route-pg="@(paginator.CurrentPage + 1)">Наступна</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="ListMat" asp-route-pg="@(paginator.TotalPages)">Остання</a>
+                    </li>
+                }
+            </ul>
+        }
+
+   </div>
 </div>
 

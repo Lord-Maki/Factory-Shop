@@ -4,7 +4,7 @@ namespace Factory_Shop.Data.Interfaces
 {
     public interface IMaterials
     {
-        IEnumerable<Materials> AllMaterials { get; }
+       IEnumerable<Materials> AllMaterials { get; }
 
         Materials GetMaterials(int MatId);
 

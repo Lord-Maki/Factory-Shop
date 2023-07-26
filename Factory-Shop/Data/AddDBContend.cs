@@ -12,7 +12,6 @@ namespace Factory_Shop.Data
         
         public DbSet<Materials> Materials { get; set; } 
         public DbSet<Category> Category { get; set; }
-
-       
+              
     }
 }

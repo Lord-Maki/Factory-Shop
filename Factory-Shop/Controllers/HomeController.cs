@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using Factory_Shop.Data.Interfaces;
 using Factory_Shop.Models;
+using Factory_Shop.Data.Models;
+using System.Net.Mail;
 
 namespace Factory_Shop.Controllers
 {
@@ -10,17 +12,20 @@ namespace Factory_Shop.Controllers
         private readonly ILogger<HomeController> logger;
         private readonly IMaterials materials;
         private readonly IMatCategory allCategory;
-
+        //public List<Materials> material;
 
         public HomeController(ILogger<HomeController> logger, IMatCategory allCategory, IMaterials materials)
         {
             this.logger = logger;
             this.allCategory = allCategory;
             this.materials = materials;
-
         }
-
+                
         public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult Contact()
         {
             return View();
         }
@@ -30,12 +35,29 @@ namespace Factory_Shop.Controllers
             return View();
         }
 
-       public ViewResult ListMat()
-        {
+       public ViewResult ListMat(int pg = 1)
+       {
+            
             MatListViewModel Mat = new MatListViewModel();
             Mat.AllMaT = materials.AllMaterials;
             Mat.MatCategory = "cfr";
-            return View(Mat);
-        }
+
+            const int pageSize = 4;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            
+            int recsCount = Mat.AllMaT.Count();
+            var paginator = new MatListViewModel(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            MatListViewModel data = new MatListViewModel();
+            data.AllMaT = Mat.AllMaT.Skip(recSkip).Take(paginator.PageSize).ToList();
+            this.ViewBag.MatListViewModel = paginator;
+            return View(data);
+            
+                       
+       }
+           
     }
 }
