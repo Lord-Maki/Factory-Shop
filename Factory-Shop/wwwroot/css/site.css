@@ -1,12 +1,9 @@
 
-.body {
-    background: #141212;
-    margin: 0;
-    padding: 0;
+.Shop {
+    background: #808080;
 }
 
 video {
- 
     margin-bottom: 50px;
     position: fixed;
     top: 0;
@@ -15,7 +12,7 @@ video {
     left: 0;
     overflow: hidden;
     z-index: 0;
-    background: #94a233;
+    background: #808080;
     background-size: cover;
 }
 
@@ -39,9 +36,20 @@ VideoFront {
 
 }
 
+.histori {
+    color: #f1f1f1;
+}
+
 .Desc {
     z-index: 2;
     width: 800px;
+    color: #f1f1f1;
+}
+
+.about {
+    color: #f1f1f1;
+    position: center;
+    margin-bottom: 10px;
 }
 
 #myBtn {
@@ -57,10 +65,6 @@ VideoFront {
 #myBtn:hover {
     background: #ddd;
     color: black;
-}
-
-.about_us{
-    padding-top: 100px;
 }
 
 .lead {
@@ -87,3 +91,25 @@ VideoFront {
     display: flex;
     padding: 0,0,50px,0;
 }
+
+.container {
+    color: #f1f1f1;
+}
+
+.contNumber {
+    width: 150px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #161d2a;
+}
+
+.contEmail {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #2979ff;
+}
+
