@@ -12,7 +12,6 @@ namespace Factory_Shop.Controllers
         private readonly ILogger<HomeController> logger;
         private readonly IMaterials materials;
         private readonly IMatCategory allCategory;
-        //public List<Materials> material;
 
         public HomeController(ILogger<HomeController> logger, IMatCategory allCategory, IMaterials materials)
         {
@@ -58,6 +57,12 @@ namespace Factory_Shop.Controllers
             
                        
        }
-           
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
     }
 }

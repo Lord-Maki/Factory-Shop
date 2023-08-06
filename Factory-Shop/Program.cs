@@ -1,6 +1,7 @@
 using Factory_Shop.Data;
 using Factory_Shop.Data.Interfaces;
 using Factory_Shop.Data.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IMaterials, MatRepository>();
 builder.Services.AddTransient<IMatCategory, CategoryRepository>();
 builder.Services.AddDbContext<AddDBContend>(options => options.UseSqlServer(conection));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<AddDBContend>();
+builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
@@ -24,14 +31,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//app.MapGet("/", (AddDBContend contend) => contend.Materials.ToList());
-//app.MapGet("/", (AddDBContend contend) => contend.Category.ToList());
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
