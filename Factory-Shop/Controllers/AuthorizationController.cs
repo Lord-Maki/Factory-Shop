@@ -13,6 +13,7 @@ namespace Factory_Shop.Controllers
     public class AuthorizationController : Controller
     {
         private readonly AddDBContend _context;
+        private IEnumerable<UserDataModel> Data { get; set; }
 
         public AuthorizationController(AddDBContend context)
         {
@@ -22,9 +23,12 @@ namespace Factory_Shop.Controllers
         // GET: Authorization
         public async Task<IActionResult> Index()
         {
-              return _context.UserData != null ? 
-                          View(await _context.UserData.ToListAsync()) :
-                          Problem("Entity set 'AddDBContend.UserData'  is null.");
+            Data = await _context.UserData.ToListAsync();
+            return View(Data);
+                
+                //_context.UserData != null ?
+                //     View(await _context.UserData.ToListAsync()) :
+                //      Problem("Entity set 'AddDBContend.UserData'  is null.");
         }
 
         // GET: Authorization/Details/5

@@ -1,10 +1,11 @@
 ﻿using Factory_Shop.Data.Models;
 using Factory_Shop.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Factory_Shop.Data
 {
-    public class AddDBContend : DbContext
+    public class AddDBContend : IdentityDbContext
     {
         public AddDBContend(DbContextOptions<AddDBContend> options) : base(options) 
         {
