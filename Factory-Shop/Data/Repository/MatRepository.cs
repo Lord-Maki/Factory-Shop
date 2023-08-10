@@ -10,11 +10,14 @@ namespace Factory_Shop.Data.Repository
 
         public MatRepository (AddDBContend dbContend)
         {
-            this.dbContend = dbContend;
+            this.dbContend = dbContend; 
+            //Initialization of variable for working with the database via AddDBContend
         }
-        public IEnumerable<Materials> AllMaterials => dbContend.Materials.Include(c => c.Category);
+        public IEnumerable<Materials> AllMaterials => dbContend.Materials.Include(c => c.Category); 
+        //Getting data from database
 
-        public Materials GetMaterials(int MaterialId) => dbContend.Materials.FirstOrDefault(p => p.Id == MaterialId);
-        
+        public Materials GetMaterials(int MaterialId) => dbContend.Materials.FirstOrDefault(p => p.Id == MaterialId); 
+        //Getting data by id
+
     }
 }

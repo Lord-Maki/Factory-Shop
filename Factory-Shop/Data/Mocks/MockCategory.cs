@@ -5,6 +5,7 @@ namespace Factory_Shop.Data.Mocks
 {
     public class MockCategory : IMatCategory
     {
+        //Temporay storage of category data
         public IEnumerable<Category> AllCategory
         {
             get

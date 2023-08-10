@@ -2,6 +2,7 @@
 {
     public class Materials
     {
+        //Creating a material model
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Group { get; set; }

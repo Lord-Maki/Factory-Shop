@@ -1,37 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Factory_Shop.Data;
 using Factory_Shop.Models;
 
 namespace Factory_Shop.Controllers
 {
-    public class AuthorizationController : Controller
+    public class FeedbackController : Controller
     {
         private readonly AddDBContend _context;
         private IEnumerable<UserDataModel> Data { get; set; }
 
-        public AuthorizationController(AddDBContend context)
+        public FeedbackController(AddDBContend context)
         {
             _context = context;
         }
 
-        // GET: Authorization
+        // GET: Feedback
         public async Task<IActionResult> Index()
         {
             Data = await _context.UserData.ToListAsync();
-            return View(Data);
-                
-                //_context.UserData != null ?
-                //     View(await _context.UserData.ToListAsync()) :
-                //      Problem("Entity set 'AddDBContend.UserData'  is null.");
+            return View(Data);   
         }
 
-        // GET: Authorization/Details/5
+        // GET: Feedback/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.UserData == null)
@@ -49,13 +40,13 @@ namespace Factory_Shop.Controllers
             return View(userDataModel);
         }
 
-        // GET: Authorization/Create
+        // GET: Feedback/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Authorization/Create
+        // POST: Feedback/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,12 +57,12 @@ namespace Factory_Shop.Controllers
             {
                 _context.Add(userDataModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToPage("./Home/ListMat");
             }
             return View(userDataModel);
         }
 
-        // GET: Authorization/Edit/5
+        // GET: Feedback/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.UserData == null)
@@ -87,7 +78,7 @@ namespace Factory_Shop.Controllers
             return View(userDataModel);
         }
 
-        // POST: Authorization/Edit/5
+        // POST: Feedback/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -122,7 +113,7 @@ namespace Factory_Shop.Controllers
             return View(userDataModel);
         }
 
-        // GET: Authorization/Delete/5
+        // GET: Feedback/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.UserData == null)
@@ -140,7 +131,7 @@ namespace Factory_Shop.Controllers
             return View(userDataModel);
         }
 
-        // POST: Authorization/Delete/5
+        // POST: Feedback/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -6,6 +6,7 @@ namespace Factory_Shop.Data.Mocks
 {
     public class MockMaterials : IMaterials
     {
+        //Temporay storage of materials data
         private readonly IMatCategory CategoryMat = new MockCategory();
         public IEnumerable<Materials> AllMaterials
         {

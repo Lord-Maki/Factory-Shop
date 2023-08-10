@@ -8,15 +8,19 @@ namespace Factory_Shop.Data
         {
                   
             
-            if (!contend.Category.Any())
+            if (!contend.Category.Any()) 
+             //Data availability check
             {
-                contend.Category.AddRange(Categories.Select(c => c.Value));
+                contend.Category.AddRange(Categories.Select(c => c.Value)); 
+                //Add data
                 contend.SaveChanges();
             }
 
             if (!contend.Materials.Any())
+             //Data availability check
             {
                 contend.AddRange(
+                    //Add data
                     new Materials
                     {
                         Name = "Асвальтобетон",
@@ -214,15 +218,18 @@ namespace Factory_Shop.Data
             contend.SaveChanges();
         }
 
-        private static Dictionary<string, Category> category;
-        public static Dictionary<string, Category> Categories
+        private static Dictionary<string, Category> category; 
+        public static Dictionary<string, Category> Categories 
+         //returns a list of keys and objects 
         {
             get
             {
-                if(category == null)
+                if(category == null) 
+                 //Data availability check
                 {
                     var list = new Category[] 
-                    { 
+                    //Add data 
+                    {
                     new Category{ CategoryName = "Сипучі матеріали", Desc = "Сипучі матеріали. Без них неможливе створення" +
                     " багатьох інших, більш складних матеріалів, які повсякденно Використовуються в будівництві; не можливо " +
                     "створити фундамент або оформити садові доріжки..."},
@@ -232,10 +239,11 @@ namespace Factory_Shop.Data
                     "переходить у каменеподібний стан."}
                     };
 
-                    category = new Dictionary<string, Category>();
+                    category = new Dictionary<string, Category>(); 
                     foreach (Category el in list)
                     {
-                        category.Add(el.CategoryName, el);
+                        category.Add(el.CategoryName, el); 
+                        //Add all elements from the list to category variable
                     }
                 }
                 return category;

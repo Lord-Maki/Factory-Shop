@@ -9,12 +9,13 @@ namespace Factory_Shop.Data
     {
         public AddDBContend(DbContextOptions<AddDBContend> options) : base(options) 
         {
-            Database.EnsureCreated();
+            //Initializing a new class instance and passing it to the base constructor
         }
 
         public DbSet<UserDataModel> UserData { get; set; }
         public DbSet<Materials> Materials { get; set; } 
         public DbSet<Category> Category { get; set; }
-              
+        //Through this propertis, communication with database tables is carried out
+
     }
 }

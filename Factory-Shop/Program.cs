@@ -11,13 +11,16 @@ string conection = builder.Configuration.GetConnectionString("DefaultConnection"
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddTransient<IMaterials, MatRepository>();
 builder.Services.AddTransient<IMatCategory, CategoryRepository>();
+//Interface implementation
 builder.Services.AddDbContext<AddDBContend>(options => options.UseSqlServer(conection));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+//SQL database connection
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AddDBContend>();
+//Connection configuration setting
 builder.Services.AddControllersWithViews();
 
 
@@ -48,8 +51,9 @@ app.MapControllerRoute(
 
 using (var scope = app.Services.CreateScope())
 {
-    AddDBContend contend = scope.ServiceProvider.GetRequiredService<AddDBContend>();
+    AddDBContend contend = scope.ServiceProvider.GetRequiredService<AddDBContend>(); 
     DBObjects.Initial(contend);
+    //Connecting to the DBObjects service
 }
 
 app.Run();

@@ -40,13 +40,13 @@ namespace Factory_Shop.Controllers
             MatListViewModel Mat = new MatListViewModel();
             Mat.AllMaT = materials.AllMaterials;
             Mat.MatCategory = "cfr";
-
+            //Grtting dada from data base
             const int pageSize = 4;
             if (pg < 1)
             {
                 pg = 1;
             }
-            
+            //Setting the number of products per page 
             int recsCount = Mat.AllMaT.Count();
             var paginator = new MatListViewModel(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
@@ -54,6 +54,7 @@ namespace Factory_Shop.Controllers
             data.AllMaT = Mat.AllMaT.Skip(recSkip).Take(paginator.PageSize).ToList();
             this.ViewBag.MatListViewModel = paginator;
             return View(data);
+            //Enable pagination
             
                        
        }
