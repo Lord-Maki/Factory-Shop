@@ -57,7 +57,7 @@ namespace Factory_Shop.Controllers
             {
                 _context.Add(userDataModel);
                 await _context.SaveChangesAsync();
-                return RedirectToPage("./Home/ListMat");
+                return Redirect("/Home/ListMat");
             }
             return View(userDataModel);
         }
